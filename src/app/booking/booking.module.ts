@@ -4,10 +4,11 @@ import { MaterialModule } from '../material.module';
 
 import { BookingRoutingModule } from './booking-routing.module';
 import { BookingComponent } from './booking.component';
+import { PricePipe } from './price.pipe';
 
 
 @NgModule({
-  declarations: [BookingComponent],
+  declarations: [BookingComponent, PricePipe],
   imports: [
     CommonModule,
     BookingRoutingModule,

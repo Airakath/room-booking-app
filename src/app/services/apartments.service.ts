@@ -15,4 +15,8 @@ export class ApartmentsService {
     return this.httpClient.get<any[]>(`${environment.apiUrl}${url}`);
   }
 
+  public getApartmentsWithFreeRooms(url: string = '/apartments/freerooms'): Observable<Apartment[]> {
+    return this.httpClient.get<any[]>(`${environment.apiUrl}${url}`);
+  }
+
 }

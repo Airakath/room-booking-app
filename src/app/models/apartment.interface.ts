@@ -6,5 +6,5 @@ export interface Apartment {
     street: string;
     zipCode: string;
     city: string;
-    rooms: Array<Room>;
+    room: Room;
 }

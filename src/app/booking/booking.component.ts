@@ -21,7 +21,7 @@ export class BookingComponent implements OnInit {
   }
 
   getData() {
-    this.apartmentsService.getApartmentsWithRooms().subscribe(data => {      
+    this.apartmentsService.getApartmentsWithFreeRooms().subscribe(data => {
       this.apatrments = data;
     });
   }
