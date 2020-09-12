@@ -4,7 +4,7 @@
     
     <div class="grid">
         <div *ngFor="let apatrment of apatrments" class="tile elevation">
-            <mat-card>
+            <mat-card (click)="onRoomDetail(apatrment.room._id)">
                 <img mat-card-image src="./../../assets/images/interior-design-4467768_640.jpg" alt="Photo of a Shiba Inu">
                 <mat-card-title class="title">{{ apatrment.name }} - Chambre {{apatrment.room.number}}</mat-card-title>
                 <mat-card-content class="content">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApartmentsService } from '../services/apartments.service';
 import { Apartment } from '../models/apartment.interface';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,6 +14,7 @@ export class BookingComponent implements OnInit {
   public apatrments: Apartment[];
 
   constructor(
+    private router: Router,
     private apartmentsService: ApartmentsService
   ) { }
 
@@ -24,6 +26,10 @@ export class BookingComponent implements OnInit {
     this.apartmentsService.getApartmentsWithFreeRooms().subscribe(data => {
       this.apatrments = data;
     });
+  }
+
+  onRoomDetail(id) {
+    this.router.navigate([`/chambre/${id}`]);
   }
 
 }

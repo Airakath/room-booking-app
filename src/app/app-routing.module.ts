@@ -10,6 +10,13 @@ const routes: Routes = [
     },
   },
   {
+    path: 'chambre/:id',
+    loadChildren: () => import('./booking-detail/booking-detail.module').then(m => m.BookingDetailModule),
+    data: {
+
+    },
+  },  
+  {
     path: 'location',
     loadChildren: () => import('./my-rental/my-rental.module').then(m => m.MyRentalModule),
     data: {
