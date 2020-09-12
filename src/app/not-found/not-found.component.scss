@@ -1,0 +1,10 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+
+    h1 {
+        font-size: 3rem;
+    }
+}

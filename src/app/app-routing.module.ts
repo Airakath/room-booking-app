@@ -10,6 +10,13 @@ const routes: Routes = [
     },
   },
   {
+    path: 'location',
+    loadChildren: () => import('./my-rental/my-rental.module').then(m => m.MyRentalModule),
+    data: {
+
+    },
+  },  
+  {
     path: 'inscription',
     loadChildren: () => import('./sign-up/sign-up.module').then(m => m.SignUpModule),
     data: {
@@ -37,7 +44,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    initialNavigation: 'enabled'
+})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
