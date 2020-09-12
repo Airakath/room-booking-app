@@ -1,0 +1,81 @@
+.container {
+  display: flex;
+  flex-flow: row nowrap;
+
+  width: 80%;
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto;
+
+  .detail {
+    flex: 1;
+    padding: 3%;
+   
+
+    h1 {
+      font-weight: 500;
+      font-size: 2rem;
+    }
+
+    .location {
+      color: #868e96;
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+
+
+    .equipement {
+      padding: 50px 0px;
+
+
+      .list-item {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+
+        .item {
+          display: flex;
+          justify-content: center;
+          padding: 15px 25px;
+          margin: 20px 10px;
+          border: solid 2px black;
+          border-radius: 4%;
+        }
+      }
+    }
+  }
+
+  .booking {
+    flex: none;
+    width: 320px;
+
+    p {
+      font-size: 1rem;
+    }
+
+    .column {
+      position: fixed;
+      top: 10%;
+      border-radius: 4%;
+      width: 314px;
+      min-height: 300px;
+      height: auto;
+      display: flex;
+      flex-flow: column;
+      padding: 25px;
+
+      .row {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+      }
+
+      .action {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+      }
+    }
+
+  }
+}

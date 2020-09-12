@@ -1,1 +1,65 @@
-<p>booking-detail works!</p>
+<div class="container">
+
+    <div class="detail">
+
+        <h1> {{ room | apartment:'name' }} - Chambre {{room?.number}}</h1>
+        <p class="location">Chambre privée située au {{ room | apartment:'street' }}, {{ room | apartment:'zipCode' }} {{ room | apartment:'city' }}, </p>
+        <p>Chanbre de {{ room?.area | number:'1.0-0'}} M²</p>
+        <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia cupiditate laborum molestias animi, ex distinctio,
+            vel iusto reprehenderit odit sed assumenda consequuntur similique explicabo ipsam. Ad at iure nam hic.
+        </p>
+
+        <div class="equipement">
+            <h2>Équipements</h2>
+            <h3>Chambre</h3>
+            <div class="list-item">
+                <div class="item">Lit double</div>
+                <div class="item">Literie et accessoires</div>
+                <div class="item">Espace de travail</div>
+                <div class="item">Rangements</div>
+                <div class="item">Mobilier</div>
+                <div class="item">Balcon privé</div>
+            </div>
+            <h3>Logement</h3>
+            <div class="list-item">
+                <div class="item">Équipements de cuisine</div>
+                <div class="item">Lave-vaisselle</div>
+                <div class="item">Vaisselle & ustensiles</div>
+                <div class="item">Baignoire</div>
+                <div class="item">Douche</div>
+                <div class="item">Wifi</div>
+                <div class="item">Lave-linge</div>
+                <div class="item">Mobilier</div>
+            </div>
+        </div>
+    </div>
+    <div class="booking">
+        <div class="column elevation">
+            <div class="row">
+                <p>Loyer mensuel</p>
+                <p>{{room?.price | price}} €</p>
+            </div>
+            <div class="row">
+                <p>Charges</p>
+                <p>+60€</p>
+            </div>
+            <div class="row">
+                <p>Aide CAF</p>
+                <p>jusqu'à -258€</p>
+            </div>
+            <div>
+                <p>TOUT EST INCLUS DANS LES CHARGES</p>
+            </div>
+            <div>
+                <p>Eau</p>
+                <p>Électricité, gaz</p>
+                <p>Assurance habitation</p>
+                <p>Wifi</p>
+            </div>
+            <div class="action">
+                <button mat-raised-button color="primary" (click)="booking()">Louer cette chambre</button>
+            </div>
+        </div>
+    </div>
+</div>

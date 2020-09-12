@@ -11,12 +11,12 @@ export class ApartmentsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getApartmentsWithRooms(url: string = '/apartments/rooms'): Observable<Apartment[]> {
-    return this.httpClient.get<any[]>(`${environment.apiUrl}${url}`);
+  public getApartmentsWithRooms(): Observable<Apartment[]> {
+    return this.httpClient.get<any[]>(`${environment.apiUrl}/apartments/rooms`);
   }
 
-  public getApartmentsWithFreeRooms(url: string = '/apartments/freerooms'): Observable<Apartment[]> {
-    return this.httpClient.get<any[]>(`${environment.apiUrl}${url}`);
+  public getApartmentsWithFreeRooms(): Observable<Apartment[]> {
+    return this.httpClient.get<any[]>(`${environment.apiUrl}/apartments/freerooms`);
   }
 
 }
