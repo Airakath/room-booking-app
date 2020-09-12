@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ApartmentsService } from '../services/apartments.service';
+import { Apartment } from '../models/apartment.interface';
+
 
 @Component({
   selector: 'app-booking',
@@ -7,11 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookingComponent implements OnInit {
 
-  tutoriels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+  public apatrments: Apartment[];
 
-  constructor() { }
+  constructor(
+    private apartmentsService: ApartmentsService
+  ) { }
 
   ngOnInit(): void {
+    this.getData();
+  }
+
+  getData() {
+    this.apartmentsService.getApartmentsWithRooms().subscribe(data => {      
+      this.apatrments = data;
+    });
   }
 
 }
