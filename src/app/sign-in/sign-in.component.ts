@@ -14,6 +14,7 @@ export class SignInComponent implements OnInit {
   signinFormGroup: FormGroup;
   client: Client; 
   hidePassword = true;
+  errorMessage = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -45,9 +46,15 @@ export class SignInComponent implements OnInit {
     }
     
     this.client = this.signinFormGroup.value;
-    this.authService.signin(this.client).subscribe(res => {
-      console.log(res);    
-    });
+    this.authService.signin(this.client).subscribe(
+      res => {
+        this.errorMessage = ''; 
+        this.authService.token = res.success.token;
+      },
+      err => {
+        this.errorMessage = err.error.error.userMessage;
+      }
+    );
 
   }
 

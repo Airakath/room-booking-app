@@ -23,7 +23,9 @@
         <div *ngIf="submitted && f.password.errors" class="error">
             <div *ngIf="f.password.errors.required">Le mot de passe est obligatoire</div>
         </div>
-     
+        
+        <p *ngIf="errorMessage != ''" class="error">{{errorMessage}}</p>
+
         <button mat-raised-button color="primary" (click)="onSubmit()">Connexion</button>
     </form>
 
