@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service'
+import { Client } from '../models/client.interface';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,10 +12,12 @@ export class SignUpComponent implements OnInit {
 
   submitted: boolean = false;
   signupFormGroup: FormGroup;
+  client: Client; 
   hidePassword = true;
 
   constructor(
     private formBuilder: FormBuilder,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -48,6 +52,10 @@ export class SignUpComponent implements OnInit {
     if (this.signupFormGroup.invalid) {
       return;
     }
+    this.client = this.signupFormGroup.value;
+    this.authService.signup(this.client).subscribe(res => {
+      console.log(res);
+    }) 
   }
 
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { AuthService } from '../services/auth.service'
+import { Client } from '../models/client.interface';
 
 @Component({
   selector: 'app-sign-in',
@@ -10,10 +12,12 @@ export class SignInComponent implements OnInit {
 
   submitted: boolean = false;
   signinFormGroup: FormGroup;
+  client: Client; 
   hidePassword = true;
 
   constructor(
     private formBuilder: FormBuilder,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -22,19 +26,11 @@ export class SignInComponent implements OnInit {
 
   initForm() {
     this.signinFormGroup = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
       email: ['', [
         Validators.required,
         Validators.email
       ]],
       password: ['', Validators.required],
-      phone: ['', [
-        Validators.required,
-        Validators.pattern("[0-9]{10}")
-      ]],
-      birthDate: ['', Validators.required],
-      nationality: ['', Validators.required],
     });
   }
 
@@ -47,6 +43,12 @@ export class SignInComponent implements OnInit {
     if (this.signinFormGroup.invalid) {
       return;
     }
+    
+    this.client = this.signinFormGroup.value;
+    this.authService.signin(this.client).subscribe(res => {
+      console.log(res);    
+    });
+
   }
 
 }
