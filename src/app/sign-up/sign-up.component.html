@@ -20,8 +20,7 @@
         </div>
 
         <mat-form-field class="row">
-            <mat-label>Email</mat-label>
-            <input matInput formControlName="email" [ngClass]="{'is-invalid': submitted && f.email.errors}">
+            <input matInput formControlName="email" placeholder="Email*" [ngClass]="{'is-invalid': submitted && f.email.errors}">
         </mat-form-field>
         <div *ngIf="submitted && f.email.errors" class="error">
             <div *ngIf="f.email.errors.required">L'email est obligatoire</div>
@@ -41,8 +40,7 @@
         </div>
      
         <mat-form-field class="row">
-            <mat-label>Telephone</mat-label>
-            <input matInput formControlName="phone" [ngClass]="{'is-invalid': submitted && f.phone.errors}">
+            <input matInput formControlName="phone" placeholder="Telephone*" [ngClass]="{'is-invalid': submitted && f.phone.errors}">
         </mat-form-field>
         <div *ngIf="submitted && f.phone.errors" class="error">
             <div *ngIf="f.phone.errors.required">Le numéro est obligatoire</div>
@@ -66,7 +64,11 @@
             <div *ngIf="f.nationality.errors.required">La nationalité est obligatoire</div>
         </div>
 
+        <p *ngIf="errorMessage != ''" class="error">{{errorMessage}}</p>
+
         <button mat-raised-button color="primary" (click)="onSubmit()">Inscription</button>
+
+        
     </form>
 
 </div>

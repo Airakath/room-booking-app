@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service'
 import { Client } from '../models/client.interface';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-sign-up',
@@ -14,10 +15,12 @@ export class SignUpComponent implements OnInit {
   signupFormGroup: FormGroup;
   client: Client; 
   hidePassword = true;
+  errorMessage='';
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    public snackbar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -47,15 +50,32 @@ export class SignUpComponent implements OnInit {
     return this.signupFormGroup.controls;
   }
 
+  notification() {
+    this.snackbar.open('Votre compte a été créé avec succès', 'Ok', {
+      duration: 3000,
+      verticalPosition: 'top',
+      horizontalPosition: 'right',
+      panelClass: 'custum-snackbar'
+    });
+  }
+
   onSubmit() {
     this.submitted = true;
     if (this.signupFormGroup.invalid) {
       return;
     }
     this.client = this.signupFormGroup.value;
-    this.authService.signup(this.client).subscribe(res => {
-      console.log(res);
-    }) 
+    this.authService.signup(this.client).subscribe(
+      res => {
+        this.errorMessage='';
+        this.notification();
+        this.submitted = false;
+        this.signupFormGroup.reset();         
+      },
+      err => {
+        this.errorMessage = err.error.error.userMessage;
+      }
+    ) 
   }
 
 }
