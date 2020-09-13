@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 
 import { MaterialModule } from './material.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NavBarComponent } from './common/navigation/nav-bar/nav-bar.component';
 import { FooterComponent } from './common/footer/footer.component';
 
@@ -25,6 +25,7 @@ import { FooterComponent } from './common/footer/footer.component';
     BrowserAnimationsModule,
     LayoutModule,
     MaterialModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   providers: [

@@ -36,3 +36,7 @@ body {
     @include mat-elevation(12);
   }
 }
+
+.elevation-light {
+  @include mat-elevation(2);
+}

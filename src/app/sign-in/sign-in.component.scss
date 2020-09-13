@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+
+  .form {
+    width: 50%;
+    height: auto;
+    border-radius: 4%;
+    padding: 30px;
+
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+      font-size: 1.8rem;
+    }
+
+    .row {
+      width: calc(100% - 60px);
+
+    }
+
+    .error {
+      color: red;
+    }
+
+  }
+}

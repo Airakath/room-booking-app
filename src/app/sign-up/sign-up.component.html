@@ -1,1 +1,72 @@
-<p>sign-up works!</p>
+<div class="container">
+
+    
+    <form [formGroup]="signupFormGroup" class="form elevation-light">
+        <h1>Inscritpion</h1>
+
+        <mat-form-field class="row">
+            <input matInput formControlName="firstName" placeholder="Prénom*"
+                [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+        </mat-form-field>
+        <div *ngIf="submitted && f.firstName.errors" class="error">
+            <div *ngIf="f.firstName.errors.required">Le prénom est obligatoire</div>
+        </div>
+
+        <mat-form-field class="row">
+            <input matInput formControlName="lastName" placeholder="Nom*" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }">
+        </mat-form-field>
+        <div *ngIf="submitted && f.lastName.errors" class="error">
+            <div *ngIf="f.lastName.errors.required">Le nom est obligatoire</div>
+        </div>
+
+        <mat-form-field class="row">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" [ngClass]="{'is-invalid': submitted && f.email.errors}">
+        </mat-form-field>
+        <div *ngIf="submitted && f.email.errors" class="error">
+            <div *ngIf="f.email.errors.required">L'email est obligatoire</div>
+            <div *ngIf="f.email.errors.email">L'email doit être valide</div>
+        </div>
+
+        <mat-form-field class="row">
+            <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" placeholder="Mot de passe*"
+                [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+            <button type="button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
+                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+        <div *ngIf="submitted && f.password.errors" class="error">
+            <div *ngIf="f.password.errors.required">Le mot de passe est obligatoire</div>
+        </div>
+     
+        <mat-form-field class="row">
+            <mat-label>Telephone</mat-label>
+            <input matInput formControlName="phone" [ngClass]="{'is-invalid': submitted && f.phone.errors}">
+        </mat-form-field>
+        <div *ngIf="submitted && f.phone.errors" class="error">
+            <div *ngIf="f.phone.errors.required">Le numéro est obligatoire</div>
+            <div *ngIf="f.phone.errors.pattern">Le numéro n'est pas valide</div>
+        </div>
+
+        <mat-form-field class="row">
+            <input matInput [matDatepicker]="picker" formControlName="birthDate" placeholder="Date de Naissance*"
+            [ngClass]="{ 'is-invalid': submitted && f.birthDate.errors }">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker startView="multi-year"></mat-datepicker>
+        </mat-form-field>
+        <div *ngIf="submitted && f.birthDate.errors" class="error">
+            <div *ngIf="f.birthDate.errors.required">La date de naissance est obligatoire</div>
+        </div>
+
+        <mat-form-field class="row">
+            <input matInput formControlName="nationality" placeholder="Nationalité*" [ngClass]="{ 'is-invalid': submitted && f.nationality.errors }">
+        </mat-form-field>
+        <div *ngIf="submitted && f.nationality.errors" class="error">
+            <div *ngIf="f.nationality.errors.required">La nationalité est obligatoire</div>
+        </div>
+
+        <button mat-raised-button color="primary" (click)="onSubmit()">Inscription</button>
+    </form>
+
+</div>
