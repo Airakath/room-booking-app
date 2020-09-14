@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { BookingService } from '../services/booking.service';
+import { AuthService } from '../services/auth.service';
+import { Client } from '../models/client.interface';
+import { Booking } from '../models/booking.interface';
 
 @Component({
   selector: 'app-my-rental',
@@ -7,9 +11,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyRentalComponent implements OnInit {
 
-  constructor() { }
+  public currentUser: Client;
+  public booking: Booking;
 
-  ngOnInit(): void {
+  constructor(
+    private bookingService: BookingService,
+    private authService: AuthService,
+  ) { }
+
+  ngOnInit(): void { 
+    this.logged();
+    this.getData();
+  }
+
+  logged() {
+    this.authService.currentUser.subscribe(user => {
+      if (user) {
+        this.currentUser = user;
+      } else {
+        this.currentUser = null;
+      }
+    });
+  }
+
+  getData() {
+    this.bookingService.readBookingByClientId(this.currentUser._id).subscribe(res => {
+      console.log(res);
+      this.booking = res;
+      
+    }); 
   }
 
 }

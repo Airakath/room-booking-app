@@ -1,1 +1,68 @@
-<p>my-rental works!</p>
+<div class="container">
+    <h1>Ma réservation</h1>
+
+    <ng-template [ngIf]="booking != null" [ngIfElse]="isEmpty">
+
+        <h2>Mes informations personnels</h2>
+        <div class="bloc elevation-light">
+            <p>
+                <span>Prenom :</span> {{ booking?.client?.firstName }}
+            </p>
+            <p>
+                <span>Nom :</span> {{ booking?.client?.lastName }}
+            </p>
+            <p>
+                <span>Email :</span> {{ booking?.client?.email }}
+            </p>
+            <p>
+                <span>Anniversaire :</span> {{ booking?.client?.birthDate | date:'dd/MM/yyyy'}}
+            </p>
+            <p>
+                <span>Téléphone :</span> {{ booking?.client?.phone }}
+            </p>
+            <p>
+                <span>Nationalité :</span> {{ booking?.client?.nationality }}
+            </p>
+        </div>
+
+        <h2>Mon appartement</h2>
+        <div class="bloc elevation-light">
+            <p>
+                <span>Nom :</span> {{ booking?.room?.apartment?.name }}
+            </p>
+            <p>
+                <span>Adresse :</span> {{ booking?.room?.apartment?.street}}
+            </p>
+            <p>
+                <span>Code postal :</span> {{ booking?.room?.apartment?.zipCode }}
+            </p>
+            <p>
+                <span>Ville :</span> {{ booking?.room?.apartment?.city }}
+            </p>
+        </div>
+
+        <h2>Ma chambre</h2>
+        <div class="bloc elevation-light">
+            <p>
+                <span>Numero de chambre :</span> {{ booking?.room?.number}}
+            </p>
+            <p>
+                <span>Prix :</span> {{ booking?.room?.price }}
+            </p>
+            <p>
+                <span>M² :</span> {{ booking?.room?.area }}
+            </p>
+        </div>
+
+    </ng-template>
+    
+    <ng-template #isEmpty>
+        <div class="bloc elevation-light">
+            <p>
+                Aucune réservation en cours
+            </p>
+        </div>
+    </ng-template>
+
+
+</div>

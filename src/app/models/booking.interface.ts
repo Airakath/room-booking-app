@@ -1,6 +1,6 @@
 export interface Booking {
-    _id: number;
+    _id?: number;
     client: number;
     room: number;
-    date: Date;
+    date?: Date;
 }

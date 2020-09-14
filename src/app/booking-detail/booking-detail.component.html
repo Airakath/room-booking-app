@@ -58,7 +58,11 @@
                 <p>Wifi</p>
             </div>
             <div class="action">
-                <button mat-raised-button color="primary" (click)="booking()">Louer cette chambre</button>
+                <ng-template [ngIf]="currentUser == null">
+                    <a mat-raised-button color="primary" routerLink="/connexion">Se connecter</a>
+                </ng-template>
+                
+                <button mat-raised-button color="primary" [disabled]="!currentUser" (click)="booking()">Louer cette chambre</button>
             </div>
         </div>
     </div>

@@ -13,7 +13,11 @@ export class BookingService {
 
   }
 
-  public createBookingById(booking: Booking) {
+  public readBookingByClientId(id: number): Observable<Booking> {
+    return this.httpClient.get<Booking>(`${environment.apiUrl}/bookings/clients/${id}`);
+  }
+
+  public createBooking(booking: Booking) {
     return this.httpClient.post<Booking>(`${environment.apiUrl}/bookings`, booking);
   }
 
