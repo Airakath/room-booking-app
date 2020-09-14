@@ -68,7 +68,7 @@ export class BookingDetailComponent implements OnInit {
         this.router.navigate([`/location`]);  
       },
       err => {
-        console.log(err);       
+        this.notification(err.error.error.userMessage);     
       }
     );
   }

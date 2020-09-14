@@ -36,9 +36,7 @@ export class MyRentalComponent implements OnInit {
 
   getData() {
     this.bookingService.readBookingByClientId(this.currentUser._id).subscribe(res => {
-      console.log(res);
-      this.booking = res;
-      
+      this.booking = res;   
     }); 
   }
 

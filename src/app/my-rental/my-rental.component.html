@@ -47,10 +47,10 @@
                 <span>Numero de chambre :</span> {{ booking?.room?.number}}
             </p>
             <p>
-                <span>Prix :</span> {{ booking?.room?.price }}
+                <span>Prix :</span> {{ booking?.room?.price / 100 }} €
             </p>
             <p>
-                <span>M² :</span> {{ booking?.room?.area }}
+                <span> Taille :</span> {{ booking?.room?.area | number:'1.0-0' }} M²
             </p>
         </div>
 
