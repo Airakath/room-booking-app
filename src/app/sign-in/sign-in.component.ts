@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from '../services/auth.service'
 import { Client } from '../models/client.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -17,6 +18,7 @@ export class SignInComponent implements OnInit {
   errorMessage = '';
 
   constructor(
+    private router: Router,
     private formBuilder: FormBuilder,
     private authService: AuthService
   ) { }
@@ -48,8 +50,7 @@ export class SignInComponent implements OnInit {
     this.client = this.signinFormGroup.value;
     this.authService.signin(this.client).subscribe(
       res => {
-        this.errorMessage = ''; 
-        this.authService.token = res.success.token;
+        this.router.navigate([`/`]);
       },
       err => {
         this.errorMessage = err.error.error.userMessage;

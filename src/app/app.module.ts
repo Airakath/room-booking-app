@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './guards/auth.guard';
 
 import { MaterialModule } from './material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -29,7 +31,8 @@ import { FooterComponent } from './common/footer/footer.component';
     ReactiveFormsModule
   ],
   providers: [
-    
+    AuthService,
+    AuthGuard,
   ],
   bootstrap: [
     AppComponent

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Observable, Subject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Client } from '../models/client.interface';
 
 @Injectable({
@@ -9,45 +10,16 @@ import { Client } from '../models/client.interface';
 })
 export class AuthService {
 
-
-  private _token: string;
-  private _user: Client;
-
-  tokenSubject = new Subject<string>();
-  userSubject = new Subject<Client>();
+  private currentUserSubject: BehaviorSubject<Client>;
+  public currentUser: Observable<Client>;
 
   constructor(private httpClient: HttpClient) { 
-
+    this.currentUserSubject = new BehaviorSubject<Client>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  public set token(value: string) {
-    this._token = value;
-
-    this.emitTokenSubject();
-  }
-
-  public get token() {
-    return this._token;
-  }
-
-  public set user(value: Client) {
-    this._user = value;
-
-    this.emitUserSubject();
-  }
-
-  public get user() {
-    return this._user;
-  }
-
-  emitTokenSubject() {
-    this.tokenSubject.next(this._token);
-    console.log(this._token);
-  }
-
-  emitUserSubject() {
-    this.userSubject.next(this._user);
-    console.log(this._user);
+  public get currentUserValue(): Client {
+    return this.currentUserSubject.value;
   }
 
   public signup(client: Client) {
@@ -55,6 +27,16 @@ export class AuthService {
   }
 
   public signin(client: Client) {
-    return this.httpClient.post<any>(`${environment.apiUrl}/signin`, client);
+    return this.httpClient.post<any>(`${environment.apiUrl}/signin`, client)
+      .pipe(map(user => {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        this.currentUserSubject.next(user);
+        return user;    
+      }));
+  }
+
+  logout() {
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
   }
 }

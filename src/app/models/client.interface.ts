@@ -3,8 +3,8 @@ export interface Client {
     firstName: string;
     lastName: string;
     email: string;
-    password: string;
-    phone: string;
-    birthDate: Date;    
-    nationality: string;  
+    password?: string;
+    phone?: string;
+    birthDate?: Date;    
+    nationality?: string;  
 }

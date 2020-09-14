@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
   },  
   {
     path: 'location',
+    canActivate: [AuthGuard], 
     loadChildren: () => import('./my-rental/my-rental.module').then(m => m.MyRentalModule),
     data: {
 
