@@ -7,4 +7,5 @@ export interface Client {
     phone?: string;
     birthDate?: Date;    
     nationality?: string;  
+    token?: string;
 }

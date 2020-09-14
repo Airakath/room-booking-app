@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { AuthService } from '../services/auth.service'
 import { Client } from '../models/client.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -18,6 +19,7 @@ export class SignUpComponent implements OnInit {
   errorMessage='';
 
   constructor(
+    private router: Router,
     private formBuilder: FormBuilder,
     private authService: AuthService,
     public snackbar: MatSnackBar
@@ -69,8 +71,7 @@ export class SignUpComponent implements OnInit {
       res => {
         this.errorMessage='';
         this.notification();
-        this.submitted = false;
-        this.signupFormGroup.reset();         
+        this.router.navigate([`/connexion`]);      
       },
       err => {
         this.errorMessage = err.error.error.userMessage;
